@@ -18,5 +18,5 @@ Set of scripts and config files to setup an ArchLinux machine quickly
 ```bash
 curl -O https://raw.githubusercontent.com/nicodeslandes/archlinux/main/install.sh
 chmod +x install.sh
-./install.sh
+./install.sh <host_name>
 ```
