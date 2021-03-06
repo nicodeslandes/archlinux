@@ -7,6 +7,7 @@ if [ -z "$1" ]
 fi
 
 HOSTNAME=$1
+PACMAN_INSTALL='pacman -S --noconfirm'
 
 # Setup London time zone and setup /etc/adjtime
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
@@ -37,7 +38,7 @@ cat > /etc/hosts <<EOL
 EOL
 
 # Setup dhcp
-pacman -S dhcpcd
+$PACMAN_INSTALL dhcpcd
 systemctl enable dhcpcd
 # disable ARP probing
 cat >> /etc/dhcpcd.conf <<EOL
@@ -47,11 +48,11 @@ noarp
 EOL
 
 # Setup ssh
-pacman -S openssh
+$PACMAN_INSTALL openssh
 systemctl enable sshd
 
 # Install basic tools
-pacman -S vi nano mandb
+$PACMAN_INSTALL vi nano man-db htop vi
 
 # Setup root password
 echo -n 'Setting up root password. '
@@ -65,11 +66,9 @@ echo -n 'Setting up password for user nico. '
 passwd nico
 
 # Setup sudo for user
-pacman -S sudo
+$PACMAN_INSTALL sudo
 
 # Add nico to sudoers group
 groupadd sudo
 usermod nico -G sudo
 sed -i 's/^#\s*\(%sudo\s\+ALL=(ALL)\s\+ALL\)/\1/' /etc/sudoers
-
-# 
