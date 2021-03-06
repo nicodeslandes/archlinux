@@ -60,8 +60,9 @@ passwd
 
 # Create new user
 read -p "Enter new username [nico]: " USERNAME
-if [ -z $USERNAME ]
-then USERNAME=nico
+if [ -z $USERNAME ];
+then
+  USERNAME=nico
 fi
 
 useradd $USERNAME
