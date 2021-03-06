@@ -11,5 +11,5 @@ Set of scripts and config files to setup an ArchLinux machine quickly
 - Start the VM
 - In the root prompt, run the following commands:
 ```bash
-curl tinyurl.com/NicoArch -L | bash -s <host_name>
+curl tinyurl.com/NicoArch -L | bash
 ```

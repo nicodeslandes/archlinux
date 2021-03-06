@@ -58,17 +58,22 @@ $PACMAN_INSTALL vi nano man-db htop vi
 echo -n 'Setting up root password. '
 passwd
 
-# Create user
-useradd nico
-mkdir ~nico
-chown nico:nico ~nico
-echo -n 'Setting up password for user nico. '
-passwd nico
+# Create new user
+read -p "Enter new username [nico]: " USERNAME
+if [ -z $USERNAME ]
+then USERNAME=nico
+fi
+
+useradd $USERNAME
+mkdir /home/$USERNAME
+chown nico:nico /home/$USERNAME
+echo -n "Setting up password for user $USERNAME. "
+passwd $USERNAME
 
 # Setup sudo for user
 $PACMAN_INSTALL sudo
 
 # Add nico to sudoers group
 groupadd sudo
-usermod nico -G sudo
+usermod $USERNAME -G sudo
 sed -i 's/^#\s*\(%sudo\s\+ALL=(ALL)\s\+ALL\)/\1/' /etc/sudoers
