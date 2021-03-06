@@ -12,4 +12,5 @@ Set of scripts and config files to setup an ArchLinux machine quickly
 - In the root prompt, run the following commands:
 ```bash
 curl tinyurl.com/NicoArch -L | bash
+./install
 ```
