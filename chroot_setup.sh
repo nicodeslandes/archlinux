@@ -66,14 +66,14 @@ fi
 
 useradd $USERNAME
 mkdir /home/$USERNAME
-chown nico:nico /home/$USERNAME
+chown $USERNAME:$USERNAME /home/$USERNAME
 echo -n "Setting up password for user $USERNAME. "
 passwd $USERNAME
 
 # Setup sudo for user
 $PACMAN_INSTALL sudo
 
-# Add nico to sudoers group
+# Add user to sudoers group
 groupadd sudo
 usermod $USERNAME -G sudo
 sed -i 's/^#\s*\(%sudo\s\+ALL=(ALL)\s\+ALL\)/\1/' /etc/sudoers

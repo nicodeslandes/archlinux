@@ -1,10 +1,10 @@
 read -p "Enter the machine hostname [archie]: " HOSTNAME
 if [ -z $HOSTNAME ]
-then HOSTNAME=archie
+then
+  HOSTNAME=archie
 fi
 
 echo Starting ArchLinux installation for host $HOSTNAME
-exit 0
 
 # Setup disk partitions
 curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/sda.sfdisk | sfdisk /dev/sda
