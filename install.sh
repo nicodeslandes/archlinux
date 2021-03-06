@@ -1,4 +1,10 @@
-HOSTNAME = "archie2"
+if [ -z "$1" ]
+  then
+    echo "Usage: $0 <host_name>"
+    exit 1
+fi
+
+HOSTNAME=$1
 
 # Setup disk partitions
 curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/sda.sfdisk | sfdisk /dev/sda
@@ -21,7 +27,7 @@ pacstrap /mnt base linux
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # chroot into the new file system and run the rest of the install script
-cp chroot_setup.sh /mnt/root/
+curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/chroot_setup.sh -o /mnt/root/chroot_setup.sh
 chmod +x /mnt/root/chroot_setup.sh
 arch-chroot /mnt /root/chroot_setup.sh $HOSTNAME
 rm /mnt/root/chroot_setup.sh
