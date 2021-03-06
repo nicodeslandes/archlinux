@@ -11,7 +11,7 @@ Set of scripts and config files to setup an ArchLinux machine quickly
 - Start the VM
 - In the root prompt, run the following commands:
 ```bash
-curl -O https://raw.githubusercontent.com/nicodeslandes/archlinux/main/install.sh
+curl shorturl.at/GP379 -o install.sh
 chmod +x install.sh
 ./install.sh <host_name>
 ```
