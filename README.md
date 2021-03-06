@@ -16,7 +16,7 @@ Set of scripts and config files to setup an ArchLinux machine quickly
 - In the root prompt, run the following commands:
 
 ```bash
-curl -O curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/install.sh
+curl -O https://raw.githubusercontent.com/nicodeslandes/archlinux/main/install.sh
 chmod +x install.sh
-./install.sh
+./install.sh <host_name>
 ```
