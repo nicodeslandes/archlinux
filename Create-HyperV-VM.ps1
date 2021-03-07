@@ -25,11 +25,11 @@ Write-Host -ForegroundColor Cyan Adding DVD drive and loading ArchLinux iso
 Add-VMDvdDrive $Name -Path $IsoPath
 
 Write-Host -ForegroundColor Cyan Configuring boot device and disabling Secure Boot
-$bootEntries = Get-VMFirmware $Name | % BootOrder
-Set-VMFirmware $Name -BootOrder (2, 0, 1 | % { $bootEntries[$_] }) -EnableSecureBoot Off
+$bootEntries = Get-VMFirmware $Name | ForEach-Object BootOrder
+Set-VMFirmware $Name -BootOrder (2, 0, 1 | ForEach-Object { $bootEntries[$_] }) -EnableSecureBoot Off
 
 Write-Host -ForegroundColor Green VM $Name Successfully created!
 
 Write-Host -ForegroundColor Green You can now start it and run the following commands to start the ArchLinux installation:`n
-Write-Host "curl tinyurl.com/NicoArch -L | bash
+Write-Host "curl tinyurl.com/NicoArch -sL | bash
 ./install`n"
