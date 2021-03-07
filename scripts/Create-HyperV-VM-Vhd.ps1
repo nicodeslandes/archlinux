@@ -1,18 +1,31 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string]$Name)
+    [string]$Name,
+    [switch]$OutputVhd)
 
 $ErrorActionPreference = "Stop"
 
-Write-Host -ForegroundColor Green Creating VHD for VM $Name
-
 # Create VHD with 1MB Block Size
+
 $VhdFolder = 'C:\Users\Public\Documents\Hyper-V\Virtual Hard Disks'
-$Vhd = "$VhdFolder\$Name.vhdx"
+$VhdPath = "$VhdFolder\$Name.vhdx"
+Write-Host -ForegroundColor Cyan Creating VHD $VhdPath
 
-if (Test-Path $Vhd) { throw "VHD File $vhd already exists" }
+if (Test-Path $VhdPath) {
+    while ($true) {
+        Write-Host -NoNewline -ForegroundColor Green "VHD File $VhdPath already exists.`nDo you want to delete it? [Y/n] "
+        $response = Read-Host
+        if ($response -ieq "Y" -or $null -eq $reponse) {
+            Remove-Item $VhdPath
+            break
+        }
+        elseif ($response -ieq "N") {
+            throw "VHD Creation aborted"
+        }
+    }
+ }
 
-Write-Host -ForegroundColor Cyan Creating VHD $Vhd
-New-VHD -Path $vhd -SizeBytes 10GB -Dynamic -BlockSizeBytes 1MB | Out-Null
-
-Write-Host -ForegroundColor Green VHD successfully created at $vhd !
+$Vhd = New-VHD -Path $VhdPath -SizeBytes 10GB -Dynamic -BlockSizeBytes 1MB
+if ($OutputVhd) {
+    Write-Output $Vhd
+}

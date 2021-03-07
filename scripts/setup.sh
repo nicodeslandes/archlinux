@@ -5,7 +5,6 @@ then
 fi
 
 echo Starting ArchLinux installation for host $HOSTNAME
-exit 0
 
 # Setup disk partitions
 curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/scripts/sda.sfdisk | sfdisk /dev/sda
