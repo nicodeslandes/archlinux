@@ -7,7 +7,7 @@ fi
 echo Starting ArchLinux installation for host $HOSTNAME
 
 # Setup disk partitions
-curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/scripts/sda.sfdisk | sfdisk /dev/sda
+curl -s https://raw.githubusercontent.com/nicodeslandes/archlinux/main/scripts/sda.sfdisk | sfdisk /dev/sda
 
 # Format EFI partition
 mkfs.fat -F32 /dev/sda1
@@ -27,7 +27,7 @@ pacstrap /mnt base linux
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # chroot into the new file system and run the rest of the install script
-curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/scripts/chroot_setup.sh -o /mnt/root/chroot_setup.sh
+curl https://raw.githubusercontent.com/nicodeslandes/archlinux/main/scripts/chroot_setup.sh -so /mnt/root/chroot_setup.sh
 chmod +x /mnt/root/chroot_setup.sh
 arch-chroot /mnt /root/chroot_setup.sh $HOSTNAME
 rm /mnt/root/chroot_setup.sh
