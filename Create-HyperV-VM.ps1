@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$Name,
     [string]$VmSwitch = "Default Switch",
-    [string]$IsoPath = "C:\Users\ndesl\OneDrive\Isos\Linux\archlinux-2021.09.01-x86_64.iso")
+    [string]$IsoPath = "C:\Users\ndesl\OneDrive\Isos\Linux\archlinux-2022.10.01-x86_64.iso")
 
 $ErrorActionPreference = "Stop"
 

@@ -7,7 +7,7 @@ if [ -z "$1" ]
 fi
 
 HOSTNAME=$1
-PACMAN_INSTALL='pacman -S --noconfirm'
+PACMAN_INSTALL='pacman -Sy --noconfirm'
 
 # Setup London time zone and setup /etc/adjtime
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
