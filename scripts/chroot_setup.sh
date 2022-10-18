@@ -52,7 +52,10 @@ $PACMAN_INSTALL openssh
 systemctl enable sshd
 
 # Install basic tools
-$PACMAN_INSTALL vi nano man-db htop vi
+$PACMAN_INSTALL vim nano man-db htop which
+
+# Setup vim
+ln -sf /usr/bin/vim /usr/bin/vi
 
 # Setup root password
 echo -n 'Setting up root password. '
@@ -77,4 +80,4 @@ $PACMAN_INSTALL sudo
 # Add user to sudoers group
 groupadd sudo
 usermod $USERNAME -G sudo
-sed -i 's/^#\s*\(%sudo\s\+ALL=(ALL)\s\+ALL\)/\1/' /etc/sudoers
+sed -i -E 's/^#\s*(%sudo\s+ALL=\(ALL:ALL\)\s+ALL)/\1/' /etc/sudoers
