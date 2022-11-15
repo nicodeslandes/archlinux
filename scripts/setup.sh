@@ -21,7 +21,7 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 
 # Before installation, ensure the correct pgp keys are setup (otherwise the following pacstrap rejects some packages)
-pacman -Sy archlinux-keyring
+pacman -Sy --noconfirm archlinux-keyring
 
 # Kick off the installation (not including linux-firmware as this is for VMs)
 pacstrap /mnt base linux
